@@ -1,22 +1,23 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "liton das",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
+    "concurrently": "^9.2.1",
     "cors": "^2.8.5",
-    "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "morgan": "^1.10.1"
-  },
-  "devDependencies": {
+    "morgan": "^1.10.1",
     "nodemon": "^3.1.10"
   }
 }
