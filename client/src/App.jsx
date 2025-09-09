@@ -4,6 +4,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import axios from 'axios';
 import Layoutes from './layoutes/Layoutes';
 import SignIn from './auth/SignIn';
+import SignUp from './auth/SignUp';
 const App = () => {
   useEffect(()=>{
     axios.get('http://localhost:4000/').then((data)=>{
@@ -20,6 +21,7 @@ const App = () => {
       
       </Route>
       <Route path='/signIn' element={<SignIn/>}/>
+      <Route path='/signUp' element={<SignUp/>}/>
     </Route>
   ))
   return (
