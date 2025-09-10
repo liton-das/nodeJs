@@ -1,0 +1,1 @@
+exports.validateFormater= err => err.msg
