@@ -16,12 +16,11 @@ let validate=[
     .isLength({max:20,min:2})
     .trim(),
     body('email')
-    .not()
     .isEmail()
     .withMessage('please must be provide a valid email!')
-    .custom(async value=>{
+    .custom(async email=>{
         const user = await User.findOne({email})
-        if(user === value){
+        if(user){
             throw new Error('email already in use!')
         }
         return true
@@ -34,6 +33,7 @@ let validate=[
     body('confirm_password')
     .not()
     .isEmpty()
+    .withMessage('confirm_password is required!')
     .custom(async (value,{req})=>{
         if(value !== req.body.password){
             throw new Error('password & confirm_password doesn\'t match')

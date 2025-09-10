@@ -14,12 +14,12 @@ const UserSchema = new Schema({
         trim:true,
         maxlength:20
     },
-    userEmail:{
+    email:{
         type:String,
         required:true,
         trim:true,
     },
-    userPassword:{
+    password:{
         type:String,
         required:true,
         trim:true
