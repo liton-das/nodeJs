@@ -15,15 +15,15 @@ const postSignUpController= async(req,res,next)=>{
         return res.status(400).json({error:errors.mapped()})
     }
     let {firstName,lastName,email,password,confirm_password}=req.body
-    // const salt = await bcrypt.genSalt(11)
-    // const hash = await bcrypt.hash(password,salt)
+    const salt = await bcrypt.genSalt(11)
+    const hash = await bcrypt.hash(password,salt)
     try {
         let user = new User({
             firstName,
             lastName,
             email,
-            password,
-            confirm_password
+            password:hash,
+            confirm_password:hash
         })
        await user.save()
        .then(()=>{
@@ -36,7 +36,32 @@ const postSignUpController= async(req,res,next)=>{
         
     }
 }
+// get signIn controller 
+const getSignInController=(req,res,next)=>{
+    res.status(200).json({title:'User SignIn Form'})
+}
+
+// post signIn controller 
+const postSignInController=async(req,res,next)=>{
+    const {email,password}=req.body
+    const user =await User.findOne({email})
+    if(!user){
+       return res.status(401).json({message:'Invalid Creandintial!'})
+    }
+    const isMatch = await bcrypt.compare(password,user.password)
+    if(!isMatch){
+        return res.status(401).json({
+            message:'Invalid Creadintial!'
+        })
+    }
+    res.status(401).json({
+      message: "SingIn successfully",
+      title:'User SignIn Form'
+    });
+}
 module.exports={
     getSignUpController,
-    postSignUpController
+    postSignUpController,
+    getSignInController,
+    postSignInController
 }

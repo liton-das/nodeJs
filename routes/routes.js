@@ -1,6 +1,6 @@
 const { body } = require("express-validator")
 const User = require("../model/User")
-const { getSignUpController, postSignUpController } = require('../controllers/controllers')
+const { getSignUpController, postSignUpController, getSignInController, postSignInController } = require('../controllers/controllers')
  
 let validate=[
     body('firstName')
@@ -47,5 +47,10 @@ const router = require('express').Router()
 router.get('/signUp',getSignUpController)
 //post signUp route 
 router.post('/signUp',validate,postSignUpController)
+
+// get signIn route
+router.get('/signIn',getSignInController)
+// post signIn route
+router.post('/signIn',postSignInController)
 
 module.exports=router

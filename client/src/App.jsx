@@ -2,8 +2,8 @@ import React from 'react'
 import { useEffect } from 'react'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router'
 import Layoutes from './layoutes/Layoutes';
-import SignIn from './auth/SignIn';
-import SignUp from './auth/SignUp';
+import SignUp from './pages/auth/SignUp';
+import SignIn from './pages/auth/SignIn';
 const App = () => {
   const router=createBrowserRouter(createRoutesFromElements(
     <Route>
