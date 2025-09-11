@@ -147,7 +147,7 @@ const SignUp = () => {
           <Button
             text={"SignUp"}
             className={
-              "cursor-pointer py-[4px] text-base px-[8px] rounded-[5px] mt-3 text-[#333] bg-green-600"
+              "cursor-pointer py-[4px] text-base px-[8px] rounded-[5px] mt-3 text-[#fff] bg-green-600"
             }
           />
         </form>

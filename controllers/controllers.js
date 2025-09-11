@@ -15,15 +15,15 @@ const postSignUpController= async(req,res,next)=>{
         return res.status(400).json({error:errors.mapped()})
     }
     let {firstName,lastName,email,password,confirm_password}=req.body
-    const salt = await bcrypt.genSalt(11)
-    const hash = await bcrypt.hash(password,salt)
+    // const salt = await bcrypt.genSalt(11)
+    // const hash = await bcrypt.hash(password,salt)
     try {
         let user = new User({
             firstName,
             lastName,
             email,
-            password:hash,
-            confirm_password:hash
+            password,
+            confirm_password
         })
        await user.save()
        .then(()=>{

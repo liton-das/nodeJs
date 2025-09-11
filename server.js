@@ -11,11 +11,11 @@ app.use(express.json())
 app.use('/',router)
 
 const PORT = process.env.PORT || 4000
-
+// mongodb+srv://Mern-2404:70240428@cluster0.83ortx4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 app.listen(PORT, () => {
   console.log("server is running on this port ", PORT);
   mongoose
-    .connect("mongodb://127.0.0.1:27017/Mern2404")
+    .connect("mongodb+srv://Mern-2404:70240428@cluster0.83ortx4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     .then(() => {
       console.log("Database connected succussfully");
     })
