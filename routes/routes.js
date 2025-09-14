@@ -1,48 +1,33 @@
-const { body } = require("express-validator")
-const User = require("../model/User")
-const { getSignUpController, postSignUpController, getSignInController, postSignInController } = require('../controllers/controllers')
- 
-let validate=[
-    body('firstName')
-    .not()
-    .isEmpty()
-    .withMessage('firstName is required!')
-    .isLength({max:20,min:2})
-    .trim(),
-    body('lastName')
-    .not()
-    .isEmpty()
-    .withMessage('lastName is required!')
-    .isLength({max:20,min:2})
-    .trim(),
-    body('email')
-    .isEmail()
-    .withMessage('please must be provide a valid email!')
-    .custom(async email=>{
-        const user = await User.findOne({email})
-        if(user){
-            throw new Error('email already in use!')
-        }
-        return true
-    })
-    .normalizeEmail(),
-    body('password')
-    .isLength({min:5})
-    .withMessage('password must be greater than 5 character!')
-    .trim(),
-    body('confirm_password')
-    .not()
-    .isEmpty()
-    .withMessage('confirm_password is required!')
-    .custom(async (value,{req})=>{
-        if(value !== req.body.password){
-            throw new Error('password & confirm_password doesn\'t match')
-        }
-        return true
-    })
-    .trim() 
-]
 const router = require('express').Router()
+const { getSignUpController, postSignUpController, getSignInController, getAllProductsController, postSingleProductController, postSignInController, getSingleProduct, updateProductControllerById } = require('../controllers/controllers')
+const { validate } = require("../utils/validation")
+ 
+// get all products route
+router.get('/products',getAllProductsController)
+//get signle Product route
+router.get('/product/:id',getSingleProduct)
+// post single product route
+router.post('/products',postSingleProductController)
+// update single product route
+router.put('/product/:id',updateProductControllerById)
+// delete product route
+// router.delete('/product/:id')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // get signUp route
 router.get('/signUp',getSignUpController)
 //post signUp route 
